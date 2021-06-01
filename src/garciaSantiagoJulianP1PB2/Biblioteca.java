@@ -13,22 +13,41 @@ public class Biblioteca {
         this.prestamos = new ArrayList();
     }
 
-    public void registrarLibro(TipoDeLibro tipoDeLibro, String codigo, String nombre, String autor) {
-        switch (tipoDeLibro) {
-            case Historia:
-                libros.add(new LibroHistoria(codigo, nombre, autor));
-                break;
-            case Geografia:
-                libros.add(new LibroGeografia(codigo, nombre, autor));
-                break;
-            case Matematicas:
-                libros.add(new LibroMatematicas(codigo, nombre, autor));
-                break;
-        }
+    public int getCantidadDeLibros() {
+        return libros.size();
     }
 
-    public void registrarEstudiante(int documento, String nombre, String apellido) {
-        estudiantes.add(new Estudiante(documento, nombre, apellido));
+    public int getCantidadDeEstudiantes() {
+        return estudiantes.size();
+    }
+
+    public int getCantidadDePrestamosTotales() {
+        return prestamos.size();
+    }
+
+    public Libro registrarLibro(TipoDeLibro tipoDeLibro, String codigo, String nombre, String autor) {
+        Libro nuevoLibro;
+        switch (tipoDeLibro) {
+            case Historia:
+                nuevoLibro = new LibroHistoria(codigo, nombre, autor);
+                break;
+            case Geografia:
+                nuevoLibro = new LibroGeografia(codigo, nombre, autor);
+                break;
+            case Matematicas:
+                nuevoLibro = new LibroMatematicas(codigo, nombre, autor);
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + tipoDeLibro);
+        }
+        libros.add(nuevoLibro);
+        return nuevoLibro;
+    }
+
+    public Estudiante registrarEstudiante(int documento, String nombre, String apellido) {
+        Estudiante nuevoEstudiante = new Estudiante(documento, nombre, apellido);
+        estudiantes.add(nuevoEstudiante);
+        return nuevoEstudiante;
     }
 
     public boolean prestar(Libro libro, Estudiante estudiante) {
