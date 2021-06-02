@@ -11,11 +11,6 @@ public class BibliotecaTest {
     @Before
     public void crearBiblioteca() {
         biblioteca = new Biblioteca();
-        // biblioteca.registrarEstudiante(40000000, "Juan", "Perez");
-        // biblioteca.registrarEstudiante(35000500, "Jorge", "Calvo");
-        // biblioteca.registrarLibro(TipoDeLibro.Geografia, "GE01", "Prisoners of Geography", "Tim Marshall");
-        // biblioteca.registrarLibro(TipoDeLibro.Historia, "HI01", "Maten a Duarte", "Catalina De Elía");
-        // biblioteca.registrarLibro(TipoDeLibro.Matematicas, "MA01", "Matematica Moderna 1", "Antonio Roberto López");
     }
 
     @Test
@@ -61,6 +56,36 @@ public class BibliotecaTest {
         biblioteca.prestar(libro, estudianteUno);
         boolean pudoPrestar = biblioteca.prestar(libro, estudianteDos);
         assertFalse("No debe poder prestar un libro ya prestado", pudoPrestar);
+    }
+
+    @Test
+    public void puedeRecuperarLibroPrestado() {
+        Estudiante estudiante = biblioteca.registrarEstudiante(35480541, "Fernando", "Duque");
+        Libro libro = biblioteca.registrarLibro(TipoDeLibro.Historia, "HI01", "Maten a Duarte", "Catalina De Elia");
+        biblioteca.prestar(libro, estudiante);
+        boolean pudoRecuperar = biblioteca.recuperar(libro);
+        assertTrue("Debe poder recuperar un libro prestado", pudoRecuperar);
+    }
+
+    @Test
+    public void noDebePoderRecuperarUnLibroNoPrestado() {
+        Libro libro = biblioteca.registrarLibro(TipoDeLibro.Historia, "HI01", "Maten a Duarte", "Catalina De Elia");
+        boolean pudoRecuperar = biblioteca.recuperar(libro);
+        assertFalse("No debe poder recuperar un libro no prestado", pudoRecuperar);
+    }
+
+    @Test
+    public void debePoderImprimirLibroHistoria() {
+        Libro libro = biblioteca.registrarLibro(TipoDeLibro.Historia, "HI01", "Maten a Duarte", "Catalina De Elia");
+        String impresion = biblioteca.imprimir(libro);
+        assertNotNull("Debe poder imprimir libro de historia", impresion);
+    }
+
+    @Test
+    public void noDebePoderImprimirLibroMatematicas() {
+        Libro libro = biblioteca.registrarLibro(TipoDeLibro.Matematicas, "MA01", "Matematica Moderna 1", "Antonio Roberto López");
+        String impresion = biblioteca.imprimir(libro);
+        assertNull("No debe poder imprimir libro de matematicas", impresion);
     }
 
 

@@ -10,4 +10,9 @@ public class LibroMatematicas extends Libro {
     public String getTipoDeLibro() {
         return "Matematicas";
     }
+
+    @Override
+    public String imprimir() {
+        return null;
+    }
 }

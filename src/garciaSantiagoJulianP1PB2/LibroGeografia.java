@@ -1,6 +1,6 @@
 package garciaSantiagoJulianP1PB2;
 
-public class LibroGeografia extends Libro implements Imprimible {
+public class LibroGeografia extends Libro {
 
     public LibroGeografia(String codigo, String nombre, String autor) {
         super(codigo, nombre, autor);

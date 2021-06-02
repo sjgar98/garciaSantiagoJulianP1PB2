@@ -1,6 +1,6 @@
 package garciaSantiagoJulianP1PB2;
 
-public abstract class Libro {
+public abstract class Libro implements Imprimible {
     private final String codigo;
     private final String nombre;
     private final String autor;
@@ -46,4 +46,7 @@ public abstract class Libro {
     }
 
     public abstract String getTipoDeLibro();
+
+    @Override
+    public abstract String imprimir();
 }

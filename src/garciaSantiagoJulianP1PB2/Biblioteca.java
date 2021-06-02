@@ -71,15 +71,7 @@ public class Biblioteca {
         }
     }
 
-    public boolean imprimir(Libro libro) {
-        switch (libro.getTipoDeLibro()) {
-            case "Historia":
-            case "Geografia":
-                // libro.imprimir();
-                return true;
-            default:
-                return false;
-        }
+    public String imprimir(Libro libro) {
+        return libro.imprimir();
     }
-
 }
